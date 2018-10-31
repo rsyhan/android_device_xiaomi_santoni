@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/xtended_santoni.mk
+    $(LOCAL_DIR)/colt_santoni.mk
