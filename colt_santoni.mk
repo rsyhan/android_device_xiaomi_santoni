@@ -16,8 +16,8 @@
 
 $(call inherit-product, device/xiaomi/santoni/full_santoni.mk)
 
-# Inherit some common ColtOS stuff.
-$(call inherit-product, vendor/colt/config/common.mk)
+# Inherit some common Colt stuff.
+$(call inherit-product, vendor/colt/common.mk)
 
 TARGET_BOOT_ANIMATION_RES := 720
 
