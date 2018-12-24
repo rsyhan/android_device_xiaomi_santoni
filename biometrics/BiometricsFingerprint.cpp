@@ -22,6 +22,7 @@
 #include "BiometricsFingerprint.h"
 #include <cutils/properties.h>
 
+#include <cutils/properties.h>
 #include <inttypes.h>
 #include <unistd.h>
 
@@ -53,6 +54,7 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
     } else if (!strcmp(vend, "goodix")) {
         is_goodix = true;
         mDevice = getWrapperService(BiometricsFingerprint::notify);
+        setFpVendorProp("goodix");
     }
 
     if (!mDevice) {
@@ -291,6 +293,11 @@ fingerprint_device_t* BiometricsFingerprint::openHal() {
     }
 
     return fp_device;
+}
+
+void setFpVendorProp(const char *fp_vendor) {
+    property_set("persist.vendor.sys.fp.vendor", fp_vendor);
+    property_set("ro.boot.fpsensor", fp_vendor);
 }
 
 void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
